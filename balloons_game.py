@@ -19,6 +19,39 @@ class balloons_game():
         self.root_height = self.root.winfo_screenheight() * 7 / 10
         self.background = tk.Canvas(self.root, width = self.root_width, height = self.root_height, bg = "yellow")
         self.background.grid(row = 0, column = 0, sticky = tk.NSEW)
+        self.instructions_text = [["\t\t\t\t\t\tΕίναι παιχνίδι ενός παίκτη, αν και μπορεί πολύ εύκολα να χρησιμοποιηθεί για\n\
+                                            διαγωνισμό μεταξύ πολλών παικτών. Ο στόχος είναι να πετύχεις όσο το δυνατόν\n\
+                                            περισσότερα μπαλόνια του σωστού χρώματος (το οποίο αλλάζει κάθε λίγα δευτερόλεπτα)\n\
+                                            και να συγκεντρώσεις έτσι το μεγαλύτερο δυνατό σκορ. Το παιχνίδι αποτελείται από\n\
+                                            τρία επίπεδα δυσκολίας (easy, medium και hard, με 2, 4 και 6 χρώματα μπαλονιών\n\
+                                            αντίστοιχα) και τρεις χρονικές διάρκειες παιχνιδιού (1, 2 και 3 λεπτά). Κερδίζεις\n\
+                                            πόντους πετυχαίνοντας με αριστερό κλικ τα μπαλόνια του σωστού χρώματος, ενώ χάνεις\n\
+                                            πόντους αν πετύχεις μπαλόνι λάθους χρώματος ή πατήσεις σε άλλο μέρος του χώρου\n\
+                                            παιχνιδιού όπου δεν υπάρχει μπαλόνι (τα απρόσεχτα και άσκοπα κλικ τιμωρούνται).\n\
+                                            Όσο μικρότερο και γρηγορότερο είναι το μπαλόνι τόσο περισσότερους πόντους λαμβάνεις\n\
+                                            σε περίπτωση σωστού στόχου, ενώ σε περίπτωση λάθος στόχου χάνεις πόντους με την\n\
+                                            αντίστροφη λογική (δηλαδή καλύτερα να την πάθεις με ένα μικρό και γρήγορο μπαλόνι\n\
+                                            από ό,τι με ένα μεγάλο και αργό). Κατά τη διάρκεια του παιχνιδιού μπορείς με δεξί\n\
+                                            κλικ να κάνεις παύση και να επιλέξεις μετά αν θα συνεχίσεις, θα επανεκκινήσεις\n\
+                                            την πίστα ή θα ξεκινήσεις καινούρια. Τέλος, μπορείς να αλλάξεις αρκετές από τις\n\
+                                            προκαθορισμένες παραμέτρους του παιχνιδιού πηγαίνοντας στα \"Game settings\" του\n\
+                                            μενού \"Options\".", "Καλή επιτυχία!!!"],\
+                                  ["\t\t\t\t\t\tThis is a single player game, although it can easily be used for multiplayer\n\
+                                            competition. The goal is to hit as many balloons of the correct color (which\n\
+                                            changes every few seconds) as possible and thus accumulate the highest possible\n\
+                                            score. The game consists of three levels of difficulty (easy, medium and hard,\n\
+                                            with 2, 4 and 6 colors of balloons respectively) and three time durations (1, 2\n\
+                                            and 3 minutes). You earn points by left-clicking balloons of the correct color,\n\
+                                            while you lose points if you hit a wrong-colored balloon or click on another part\n\
+                                            of the playing area where there is no balloon (careless and pointless clicks are\n\
+                                            penalized). The smaller and faster the balloon, the more points you get in case of\n\
+                                            a correct aim, while in case of a wrong aim you lose points in the reverse logic\n\
+                                            (i.e. it is better to make a mistake with a small and fast balloon than with a big\n\
+                                            and slow one). During the game you can right-click to pause and then choose whether\n\
+                                            to resume the game, restart it, or start a new one. Finally, you can change several\n\
+                                            of the default game parameters by going to \"Game settings\" in the \"Options\" menu.", "Good luck!!!"]]
+        self.instructions_language = "english"
+        self.instructions_languages_matrix = ["greek", "english"]
         self.game_level = "easy"
         self.game_time = "1 min"
         self.music_control = "ON"
@@ -87,26 +120,10 @@ class balloons_game():
         self.destroy_menu()
         self.menu_name = "instructions_menu"
         self.background.create_text(self.root_width / 2, self.root_height / 10, font = "Courier {} bold underline".format(self.adjust_sizes([30, 35, 40])), fill = "blue", text = "Balloons Game")
-        self.background.create_text(self.root_width / 4, 10 * self.root_height / 20, font = "Courier {} bold".format(self.adjust_sizes([15, 17, 20])), fill = "blue",\
-                                    text = "\t\t\t\t\t\tΕίναι παιχνίδι ενός παίκτη, αν και μπορεί πολύ εύκολα να χρησιμοποιηθεί για\n\
-                                            διαγωνισμό μεταξύ πολλών παικτών. Ο στόχος είναι να πετύχεις όσο το δυνατόν\n\
-                                            περισσότερα μπαλόνια του σωστού χρώματος (το οποίο αλλάζει κάθε λίγα δευτερόλεπτα)\n\
-                                            και να συγκεντρώσεις έτσι το μεγαλύτερο δυνατό σκορ. Το παιχνίδι αποτελείται από\n\
-                                            τρία επίπεδα δυσκολίας (easy, medium και hard, με 2, 4 και 6 χρώματα μπαλονιών\n\
-                                            αντίστοιχα) και τρεις χρονικές διάρκειες παιχνιδιού (1, 2 και 3 λεπτά). Κερδίζεις\n\
-                                            πόντους πετυχαίνοντας με αριστερό κλικ τα μπαλόνια του σωστού χρώματος, ενώ χάνεις\n\
-                                            πόντους αν πετύχεις μπαλόνι λάθους χρώματος ή πατήσεις σε άλλο μέρος του χώρου\n\
-                                            παιχνιδιού όπου δεν υπάρχει μπαλόνι (τα απρόσεχτα και άσκοπα κλικ τιμωρούνται).\n\
-                                            Όσο μικρότερο και γρηγορότερο είναι το μπαλόνι τόσο περισσότερους πόντους λαμβάνεις\n\
-                                            σε περίπτωση σωστού στόχου, ενώ σε περίπτωση λάθος στόχου χάνεις πόντους με την\n\
-                                            αντίστροφη λογική (δηλαδή καλύτερα να την πάθεις με ένα μικρό και γρήγορο μπαλόνι\n\
-                                            από ό,τι με ένα μεγάλο και αργό). Κατά τη διάρκεια του παιχνιδιού μπορείς με δεξί\n\
-                                            κλικ να κάνεις παύση και να επιλέξεις μετά αν θα συνεχίσεις, θα επανεκκινήσεις\n\
-                                            την πίστα ή θα ξεκινήσεις καινούρια. Τέλος, μπορείς να αλλάξεις αρκετές από τις\n\
-                                            προκαθορισμένες παραμέτρους του παιχνιδιού πηγαίνοντας στα \"Game settings\" του\n\
-                                            μενού \"Options\".")
-        self.background.create_text(4 * self.root_width / 5, 17 * self.root_height / 20, font = "Courier {} bold".format(self.adjust_sizes([25, 30, 35])), fill = "blue", text = "Καλή επιτυχία!!!")
-        self.back_button = menu_button(self.background, "back", "Arial {} bold".format(self.adjust_sizes([30, 35, 40])), "brown", self.root_width / 2, 9.5 * self.root_height / 10, self.main_menu).button
+        self.background.create_text(self.root_width / 4, 10 * self.root_height / 20, font = "Courier {} bold".format(self.adjust_sizes([15, 17, 20])), fill = "blue", text = self.instructions_text[["greek", "english"].index(self.instructions_language)][0])
+        self.background.create_text(4 * self.root_width / 5, 17 * self.root_height / 20, font = "Courier {} bold".format(self.adjust_sizes([25, 30, 35])), fill = "blue", text = self.instructions_text[["greek", "english"].index(self.instructions_language)][1])
+        self.change_language_button = menu_button(self.background, self.instructions_language, "Arial {} bold".format(self.adjust_sizes([30, 35, 40])), "black", 9 * self.root_width / 10, self.root_height / 10, self.change_instructions_language).button
+        self.back_button = menu_button(self.background, "back", "Arial {} bold".format(self.adjust_sizes([25, 30, 35])), "brown", self.root_width / 2, 9.5 * self.root_height / 10, self.main_menu).button
     def new_game_menu(self, event = None):
         self.destroy_menu()
         self.menu_name = "new_game_menu"
@@ -128,6 +145,9 @@ class balloons_game():
         self.root_height = self.root.winfo_screenheight() * (7 + self.adjust_sizes([0, 1, 2])) / 10
         self.background = tk.Canvas(self.root, width = self.root_width, height = self.root_height, bg = "yellow", cursor = "cross")
         self.background.grid(row = 0, column = 0, sticky = tk.NSEW)
+    def change_instructions_language(self, event = None):
+        self.instructions_language = self.alternate_matrix_elements(self.instructions_languages_matrix, self.instructions_language)
+        self.instructions_menu()
     def move_cursor(self, event = None):
         try:
             self.background.delete(self.target_cursor)
