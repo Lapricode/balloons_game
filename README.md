@@ -6,3 +6,5 @@ Any ideas for the improvement of the game are of course very welcome!
 
 Αυτή είναι μια πρώτη έκδοση του παιχνιδιού και όχι η τελική. Σκέφτομαι ότι μπορούν να γίνουν ακόμα πολλά πράγματα. Οδηγίες για το παιχνίδι βρίσκονται στο μενού "Instructions" του παιχνιδιού. Καλή διασκέδαση!
 Δεκτές φυσικά οποιεσδήποτε προτάσεις για τη βελτίωση του παιχνιδιού.
+
+Python libraries needed: random, math, os, tkinter, pillow, pygame
