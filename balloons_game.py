@@ -270,7 +270,7 @@ class balloons_game():
         self.play_sound("game_sound", "music")
         self.destroy_menu()
         self.picture_cursor = Image.open(os.getcwd() + "/Game_Pictures/" + "target_image.png")
-        self.picture_cursor = self.picture_cursor.resize((80, 50), Image.ANTIALIAS)
+        self.picture_cursor = self.picture_cursor.resize((80, 50), Image.LANCZOS)
         self.picture_cursor = ImageTk.PhotoImage(self.picture_cursor)
         self.background.bind("<Motion>", self.move_cursor)
         self.game_state = "run"
