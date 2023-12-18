@@ -10,3 +10,4 @@ Any ideas for the improvement of the game are of course very welcome!
 Python libraries needed: random, math, os, tkinter, pillow, pygame
 
 ![image](https://github.com/Lapricode/balloons_game/assets/91993549/f57065b0-9a01-4ed0-9996-eb0f6099109f)
+![image5](https://github.com/Lapricode/balloons_game/assets/91993549/c6c5ac0c-a58b-423e-8f2c-9c6a7b64f286)
