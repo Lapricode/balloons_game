@@ -14,7 +14,8 @@ class balloons_game():
         self.root.geometry("+0+0")
         self.root.resizable(False, False)
         self.root.title("Balloons Game")
-        self.root.iconbitmap(os.getcwd() + "/Game_Pictures/" + "balloons_game_icon.ico")
+        self.root.iconphoto(True, tk.PhotoImage(file = os.getcwd() + "/Game_Pictures/balloons_game_icon.png"))
+        # self.root.iconbitmap(os.getcwd() + "/Game_Pictures/" + "balloons_game_icon.ico")
         self.root_width = self.root.winfo_screenwidth() * 7 / 10
         self.root_height = self.root.winfo_screenheight() * 7 / 10
         self.background = tk.Canvas(self.root, width = self.root_width, height = self.root_height, bg = "yellow")
